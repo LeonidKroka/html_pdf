@@ -2,22 +2,22 @@ require "erb"
 require 'date'
 
 class LawPrint
-  attr_accessor :stylesheet, :town, :seller, :buyer, :price, :specifications, :date
+  attr_accessor :stylesheet, :data, :date
 
   def initialize file=File.dirname(__FILE__)+"/default.txt"
     read_data_from file
-    @town = @data[0]
-    @seller = @data[1]
-    @buyer = @data[2]
-    @price = @data[3]
-    @specifications = @data[4]
     @date = Date.today
     @stylesheet = rout "/assets/main.css"
     create_html
   end
 
   def read_data_from file
-    @data = File.readlines file
+    data = File.readlines file
+    @data = { :town => data[0],
+              :seller => data[1],
+              :buyer => data[2],
+              :price => data[3],
+              :specifications => data[4]}
   end
 
   def create_html
