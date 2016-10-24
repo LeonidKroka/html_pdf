@@ -9,6 +9,7 @@ class LawPrint
     @date = Date.today
     @stylesheet = rout "/assets/main.css"
     create_html
+    html
   end
 
   def read_data_from file
@@ -34,5 +35,3 @@ class LawPrint
       File.dirname(__FILE__)+short_url
     end
 end
-
-LawPrint.new().html
